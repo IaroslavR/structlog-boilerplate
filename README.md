@@ -8,7 +8,7 @@ Simple wrapper for CLI script which can use all advantages of [structlog](http:/
 **A** [Write Logs for Machines, use JSON](https://web.archive.org/web/20170801134840/https://journal.paul.querna.org/articles/2011/12/26/log-for-machines-in-json/)
 
 ### Usage
-By default [script](/examples/app.py) behave like a proper [12 factor](https://12factor.net/logs) app that outputs only JSON to `stdout`  
+By default [script](/examples/app.py) behave like a proper [12 factor](https://12factor.net/logs) app that outputs only JSON to `stdout` and leave the logs of libraries that use `logging` unchanged  
 
 `python ./examples/app.py`
 
