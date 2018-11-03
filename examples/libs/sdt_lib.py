@@ -1,16 +1,16 @@
 import logging
-import time
 
 logger = logging.getLogger(__name__)
 
 
 def f():
-    logger.fatal("Boom!!!!")
-    logger.error("Bang!")
-    logger.warning("Winter is coming %s", time.clock())
-    logger.info("Knock, knock")
-    logger.debug("Beer detected")
+    advent = "2018-11-01 00:00:01"
+    logger.fatal("Boom!!!! advent=%s", advent)
+    logger.error("Bang! advent=%s", advent)
+    logger.warning("Winter is coming, advent=%s", advent)
+    logger.info("Knock, knock advent=%s", advent)
+    logger.debug("Beer detected  advent=%s", advent)
     try:
         1 / 0
     except Exception:
-        logger.exception("Wow, exception")
+        logger.exception("Wow, exception  advent=%s", advent)
