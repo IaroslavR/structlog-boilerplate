@@ -8,10 +8,11 @@ Simple wrapper for CLI script which can use all advantages of [structlog](http:/
 **A** [Write Logs for Machines, use JSON](https://web.archive.org/web/20170801134840/https://journal.paul.querna.org/articles/2011/12/26/log-for-machines-in-json/)
 
 ### Usage
-By default [script](/examples/app.py) behave like a proper [12 factor](https://12factor.net/logs) app that outputs only JSON to `stdout`
+By default [script](/examples/app.py) behave like a proper [12 factor](https://12factor.net/logs) app that outputs only JSON to `stdout`  
+
+`python ./examples/app.py`
 
 ```
-python ./examples/app.py
 Boom!!!!
 Bang!
 Wow, exception
@@ -26,33 +27,8 @@ ZeroDivisionError: division by zero
 ```
 
 
-If verbosity level escalates by `-v` argument, script produces developer friendly colored output
+But if verbosity level escalates, script produces developer friendly colored output  
 
-```
-python ./examples/app.py -vv
-2018-11-03T09:22:20.438945Z [critical ] Boom!!!!                       [libs.sdt_lib] 
-2018-11-03T09:22:20.439067Z [error    ] Bang!                          [libs.sdt_lib] 
-2018-11-03T09:22:20.439278Z [warning  ] Winter is coming 0.309546      [libs.sdt_lib] 
-2018-11-03T09:22:20.439391Z [info     ] Knock, knock                   [libs.sdt_lib] 
-2018-11-03T09:22:20.439464Z [debug    ] Beer detected                  [libs.sdt_lib] 
-2018-11-03T09:22:20.439543Z [error    ] Wow, exception                 [libs.sdt_lib] 
-Traceback (most recent call last):
-  File "/home/mirror/PycharmProjects/structlog-boilerplate/examples/libs/sdt_lib.py", line 14, in f
-    1 / 0
-ZeroDivisionError: division by zero
-2018-11-03T09:22:20.439818Z [critical ] Boom!!!!                       [libs.structlog_lib] 
-2018-11-03T09:22:20.439917Z [error    ] Bang!                          [libs.structlog_lib] 
-2018-11-03T09:22:20.440009Z [warning  ] Winter is coming               [libs.structlog_lib] then=0.310436
-2018-11-03T09:22:20.440102Z [info     ] Knock, knock                   [libs.structlog_lib] 
-2018-11-03T09:22:20.440188Z [debug    ] Beer detected                  [libs.structlog_lib] 
-2018-11-03T09:22:20.440275Z [error    ] Wow, exception                 [libs.structlog_lib] 
-Traceback (most recent call last):
-  File "/home/mirror/PycharmProjects/structlog-boilerplate/examples/libs/structlog_lib.py", line 15, in f
-    1 / 0
-ZeroDivisionError: division by zero
-{
- "event": "result",
- "timestamp": "2018-11-03T09:22:20.440519Z",
- "value": 42
-}
-```
+`python ./examples/app.py -vv`
+
+![colored output](https://user-images.githubusercontent.com/9788811/47950630-a8f5f500-df4c-11e8-9375-b61a83844dd8.png)
