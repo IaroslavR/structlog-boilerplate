@@ -11,7 +11,7 @@ Simple wrapper for CLI script which can use all advantages of [structlog](http:/
 By default [script](/examples/app.py) behave like a proper [12 factor](https://12factor.net/logs) app that outputs only JSON to `stdout`
 
 ```
-python /home/mirror/PycharmProjects/structlog-boilerplate/examples/app.py
+python ./examples/app.py
 Boom!!!!
 Bang!
 Wow, exception
