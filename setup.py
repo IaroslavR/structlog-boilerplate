@@ -5,7 +5,7 @@ with open("README.md") as f:
 
 setup(
     name="structlog-boilerplate",
-    version="0.1",
+    version="0.2",
     description="Simple wrapper for CLI script which can use all advantages of structlog",
     long_description=long_description,
     long_description_content_type="text/markdown",
