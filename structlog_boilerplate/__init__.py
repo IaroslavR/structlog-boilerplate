@@ -3,19 +3,26 @@ import logging
 import sys
 
 import structlog
+
+# noinspection PyPackageRequirements
 from pygments import highlight, lexers, formatters
 
+STRICT = True
 
-def colorize(payload: str):
+
+def colorize(payload: str) -> str:
     return highlight(payload, lexers.JsonLexer(), formatters.TerminalFormatter())
 
 
-def to_json(payload: dict, pretty=False):
+def print_json(payload: dict, echo=True) -> str:
     payload.update(time_stamper(None, None, {}))
-    if pretty:
-        return colorize(json.dumps(payload, indent=1, sort_keys=True))
+    if STRICT:
+        as_str = json.dumps(payload, sort_keys=True)
     else:
-        return json.dumps(payload, sort_keys=True)
+        as_str = colorize(json.dumps(payload, indent=1, sort_keys=True))
+    if echo:
+        print(as_str)
+    return as_str
 
 
 time_stamper = structlog.processors.TimeStamper(fmt="iso")
@@ -43,13 +50,17 @@ formatter = structlog.stdlib.ProcessorFormatter(
 )
 
 
-def strict(level=logging.ERROR):
+def strict(level=logging.ERROR) -> None:
     logging.basicConfig(format="%(message)s", stream=sys.stdout, level=level)
+    global STRICT
+    STRICT = True
 
 
-def colored(level=logging.ERROR):
+def colored(level=logging.ERROR) -> None:
     handler = logging.StreamHandler()
     handler.setFormatter(formatter)
     root_logger = logging.getLogger()
     root_logger.addHandler(handler)
     root_logger.setLevel(level)
+    global STRICT
+    STRICT = False
